@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<section class="panel">
+    <h1>Admin Dashboard</h1>
+    <p>Use Django Admin to create users, assign role profiles, add subjects, marks, and attendance.</p>
+    <a class="button" href="/django-admin/">Open Django Admin</a>
+</section>
+
+<section class="panel">
+    <h2>System Summary</h2>
+    <p><strong>Total Students:</strong> {{ student_count }}</p>
+    <p><strong>Total Faculty:</strong> {{ faculty_count }}</p>
+    <p><strong>Total Parents:</strong> {{ parent_count }}</p>
+</section>
+{% endblock %}

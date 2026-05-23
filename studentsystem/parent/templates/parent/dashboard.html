@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}Parent Dashboard{% endblock %}
+
+{% block content %}
+<section class="panel">
+    <h1>Parent Dashboard</h1>
+    <p><strong>Name:</strong> {{ profile.user.get_full_name|default:profile.user.username }}</p>
+    <p><strong>Parent ID:</strong> {{ profile.parent_id }}</p>
+    <p><strong>Relation:</strong> {{ profile.relation }}</p>
+</section>
+
+<section class="panel">
+    <h2>Children</h2>
+    <table>
+        <tr>
+            <th>Roll Number</th>
+            <th>Name</th>
+            <th>Course</th>
+            <th>Semester</th>
+        </tr>
+        {% for child in children %}
+        <tr>
+            <td>{{ child.roll_number }}</td>
+            <td>{{ child.user.get_full_name|default:child.user.username }}</td>
+            <td>{{ child.course }}</td>
+            <td>{{ child.semester }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="4">No children linked yet.</td></tr>
+        {% endfor %}
+    </table>
+</section>
+
+<section class="panel">
+    <h2>Children Marks</h2>
+    <table>
+        <tr>
+            <th>Student</th>
+            <th>Subject</th>
+            <th>Total</th>
+            <th>Result</th>
+        </tr>
+        {% for mark in marks %}
+        <tr>
+            <td>{{ mark.student.roll_number }}</td>
+            <td>{{ mark.subject.name }}</td>
+            <td>{{ mark.total_marks }}</td>
+            <td>{{ mark.result }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="4">No marks available yet.</td></tr>
+        {% endfor %}
+    </table>
+</section>
+
+<section class="panel">
+    <h2>Recent Attendance</h2>
+    <table>
+        <tr>
+            <th>Student</th>
+            <th>Date</th>
+            <th>Subject</th>
+            <th>Status</th>
+        </tr>
+        {% for item in attendance %}
+        <tr>
+            <td>{{ item.student.roll_number }}</td>
+            <td>{{ item.date }}</td>
+            <td>{{ item.subject.name }}</td>
+            <td>{{ item.status }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="4">No attendance available yet.</td></tr>
+        {% endfor %}
+    </table>
+</section>
+{% endblock %}

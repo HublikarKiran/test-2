@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}Student Dashboard{% endblock %}
+
+{% block content %}
+<section class="panel">
+    <h1>Student Dashboard</h1>
+    <p><strong>Name:</strong> {{ profile.user.get_full_name|default:profile.user.username }}</p>
+    <p><strong>Roll Number:</strong> {{ profile.roll_number }}</p>
+    <p><strong>Course:</strong> {{ profile.course }}</p>
+    <p><strong>Semester:</strong> {{ profile.semester }}</p>
+</section>
+<div class="main-div">
+<a href="/student/home.html">go to home page</a>
+
+</div>
+
+<section class="panel">
+    <h2>Marks</h2>
+    <table>
+        <tr>
+            <th>Subject</th>
+            <th>Internal</th>
+            <th>External</th>
+            <th>Total</th>
+            <th>Result</th>
+        </tr>
+        {% for mark in marks %}
+        <tr>
+            <td>{{ mark.subject.name }}</td>
+            <td>{{ mark.internal_marks }}</td>
+            <td>{{ mark.external_marks }}</td>
+            <td>{{ mark.total_marks }}</td>
+            <td>{{ mark.result }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="5">No marks added yet.</td></tr>
+        {% endfor %}
+    </table>
+</section>
+
+<section class="panel">
+    <h2>Attendance</h2>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Subject</th>
+            <th>Status</th>
+        </tr>
+        {% for item in attendance %}
+        <tr>
+            <td>{{ item.date }}</td>
+            <td>{{ item.subject.name }}</td>
+            <td>{{ item.status }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="3">No attendance added yet.</td></tr>
+        {% endfor %}
+    </table>
+</section>
+{% endblock %}

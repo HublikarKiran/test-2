@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Home | Student System{% endblock %}
+
+{% block content %}
+<section class="panel">
+    <h1>Student Management System</h1>
+    <p>This beginner-friendly Django project supports four users: student, parent, faculty, and admin.</p>
+    <p>Only admin creates user accounts and role profiles. Students, parents, and faculty only login with credentials given by admin.</p>
+    <a class="button" href="{% url 'login' %}">Login</a>
+</section>
+{% endblock %}
